@@ -1,4 +1,7 @@
 ## baucis-access
+
+[![Build Status](https://travis-ci.org/hippich/baucis-access.svg)](https://travis-ci.org/hippich/baucis-access)
+
 #### Plugin for Baucis to configure read/write access on per-attribute level.
 
 ### Installation

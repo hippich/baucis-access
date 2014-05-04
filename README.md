@@ -25,7 +25,8 @@ controller.access({
     },
     owner: {
         write: "name species score",
-        read: true
+        read: true,
+        drop: false
     }
 });
 ```

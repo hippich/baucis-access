@@ -2,7 +2,7 @@
   "author": "Pavel Karoukin <pavel@karoukin.us>",
   "name": "baucis-access",
   "description": "Plugin for Baucis to configure read/write access on per-attribute level.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "url": "https://github.com/hippich/baucis-access.git"
   },

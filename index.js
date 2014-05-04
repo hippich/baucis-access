@@ -69,21 +69,25 @@ var access = module.exports = function(controller) {
             defaults: {
                 create: false,
                 read  : false,
-                write : false
+                write : false,
+                drop  : false
             },
             anonymous: {
                 create: false,
                 write : false,
-                read  : false
+                read  : false,
+                drop  : false
             },
             authenticated: {
                 create: true,
                 read  : true,
-                write : false
+                write : false,
+                drop  : false
             },
             owner: {
                 read  : true,
-                write : true
+                write : true,
+                drop  : true
             }
         },
 
@@ -127,6 +131,29 @@ baucis.Controller.decorators(function (model, protect) {
 
     protect.property('access', new access(controller), function(options) {
         return deepExtend({ enabled: true }, new access(controller), options);
+    });
+
+    controller.request('delete', function(req, res, next) {
+        if (! controller.access().enabled) {
+            return next();
+        }
+
+        var model = controller.model().source();
+
+        model.findOne(req.baucis.conditions, function(err, doc) {
+            if (err) {
+                return res.send(500);
+            }
+
+            var rules = controller.access().getCurrentRules(req, doc.toObject());
+
+            if (! rules.drop) {
+                res.status(403).send(baucis.Error.Forbidden('Deleting this document is prohibited.'));
+                return;
+            }
+
+            next();
+        });
     });
 
     // Make sure creation of new records allowed for current role.

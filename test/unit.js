@@ -18,7 +18,7 @@ describe('baucis-access', function() {
         ac.getRoles({ user: 'authenticated' }).should.not.containEql("anonymous");
     });
 
-    it('when user is owner of the document, he should have write access', function() {
+    it('when user is owner of the document, he should have write and drop access', function() {
         var req = {
             user: {
                 _id: 'authenticated'
@@ -32,9 +32,10 @@ describe('baucis-access', function() {
         var rules = ac.getCurrentRules(req, doc);
 
         should(rules.write).ok;
+        should(rules.drop).ok;
     });
 
-    it('when user is NOT owner of the document, he should NOT have write access', function() {
+    it('when user is NOT owner of the document, he should NOT have write and drop access', function() {
         var req = {
             user: {
                 _id: 'authenticated'
@@ -48,6 +49,7 @@ describe('baucis-access', function() {
         var rules = ac.getCurrentRules(req, doc);
 
         should(rules.write).not.ok;
+        should(rules.drop).not.ok;
     });
 });
 

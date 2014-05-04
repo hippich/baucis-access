@@ -1,0 +1,25 @@
+{
+  "author": "Pavel Karoukin <pavel@karoukin.us>",
+  "name": "baucis-access",
+  "description": "Plugin for Baucis to configure read/write access on per-attribute level.",
+  "version": "0.0.1",
+  "repository": {
+    "url": "https://github.com/hippich/baucis-access.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "dependencies": {
+    "baucis": "^1.0.0-prerelease.6",
+    "deep-extend": "^0.2.8"
+  },
+  "devDependencies": {
+    "should": "^3.3.1",
+    "mocha": "^1.18.2"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": ">=0.6"
+  }
+}

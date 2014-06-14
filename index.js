@@ -138,7 +138,7 @@ baucis.Controller.decorators(function (model, protect) {
             return next();
         }
 
-        var model = controller.model().source();
+        var model = controller.model();
 
         model.findOne(req.baucis.conditions, function(err, doc) {
             if (err) {

@@ -1,7 +1,21 @@
 /* global describe, it */
-var baucis = require('baucis'),
-    access = require('../index'),
-    should = require('should');
+var mongoose = require('mongoose');
+var should = require('should');
+var baucis = require('baucis');
+var access = require('../index');
+
+var Schema = mongoose.Schema;
+
+var schema = new Schema({
+    uid: { type: Schema.ObjectId, index: true },
+    code: { type: String, index: { unique: true } },
+    createdAt: { type: Date, 'default': Date.now },
+    lastUpdate: { type: Date, 'default': Date.now }
+});
+
+var model = mongoose.model('test', schema);
+
+model.lastModified('lastUpdate');
 
 var controller = baucis.rest('test');
 
